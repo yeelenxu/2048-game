@@ -81,16 +81,27 @@ document.addEventListener('keyup', (e) => {
     updateGrid();
 });
 
-// Mouse down event
+// Mouse and touch down event
 grid.addEventListener('mousedown', (e) => {
     mouseStartX = e.clientX;
     mouseStartY = e.clientY;
 }, false);
 
-// Mouse up event
+grid.addEventListener('touchstart', (e) => {
+    mouseStartX = e.touches[0].clientX;
+    mouseStartY = e.touches[0].clientY;
+}, false);
+
+// Mouse and touch up event
 grid.addEventListener('mouseup', (e) => {
     mouseEndX = e.clientX;
     mouseEndY = e.clientY;
+    handleSwipe();
+}, false);
+
+grid.addEventListener('touchend', (e) => {
+    mouseEndX = e.changedTouches[0].clientX;
+    mouseEndY = e.changedTouches[0].clientY;
     handleSwipe();
 }, false);
 
